@@ -1,0 +1,29 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Connexion</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label>Indicatif</ion-label>
+      <ion-select okText="OK" cancelText="Annuler" formControlName="cellphone_code">
+        <ion-option value="+33">+33</ion-option>
+        <ion-option value="+49">+49</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Téléphone</ion-label>
+      <ion-input type="text" formControlName="cellphone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mot de passe</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" [disabled]="!loginForm.valid">Connexion</button>
+  </form>
+</ion-content>

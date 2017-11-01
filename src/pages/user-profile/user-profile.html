@@ -1,0 +1,38 @@
+<!--
+  Generated template for the UserProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{user.fullname}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <img src="{{user.picture_url}}&width=50&height=50" class="img-circle"/>
+  {{user.firstname}}
+  {{user.lastname}}
+  {{user.email}}
+  {{user.sex_to_text}}
+  {{user.street_number}}
+  {{user.route}}
+  {{user.postal_code}}
+  {{user.locality}}
+  {{user.country}}
+  {{user.lat}}
+  {{user.lng}}
+  {{user.cellphone_code}}
+  {{user.cellphone}}
+  {{user.phone}}
+  {{user.birth}}
+  {{user.death}}
+  {{user.presentation}}
+  {{user.profession}}
+  {{user.branch}}
+  {{user.age}}ans
+</ion-content>
