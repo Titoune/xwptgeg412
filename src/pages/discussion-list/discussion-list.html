@@ -27,9 +27,9 @@
   </ion-fab>
   <ion-list>
     <ion-item-sliding #item *ngFor="let discussion_message of discussion_messages">
-      <ion-item (click)="goToDiscussion(discussion_message.id)">
-        <img src="{{discussion_message.sender.picture_url}}&width=50&height=50" class="img-circle"/>
-        {{discussion_message.sender.fullname}}
+      <ion-item (click)="goToDiscussion((discussion_message.sender_id != this.auth.getAuthUser().id ? discussion_message.sender_id : discussion_message.receiver_id))">
+        <img src="{{(discussion_message.sender_id != this.auth.getAuthUser().id ? discussion_message.sender.picture_url : discussion_message.receiver.picture_url)}}&width=50&height=50" class="img-circle"/>
+        {{(discussion_message.sender_id != this.auth.getAuthUser().id ? discussion_message.sender.fullname : discussion_message.receiver.fullname)}}
       </ion-item>
       <ion-item-options side="right">
       </ion-item-options>

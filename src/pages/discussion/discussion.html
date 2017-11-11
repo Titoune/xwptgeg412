@@ -21,4 +21,43 @@
   <p *ngIf="isLoadingError == true">
     Erreur de chargement.
   </p>
+
+
+  <div *ngFor="let discussion_message of discussion?.discussion_messages"
+       [class.right]="discussion_message.sender_id == this.auth.getAuthUser().id" class="discussion-message">
+    <p>{{discussion_message.sender.fullname}}</p>
+    <div class="flex">
+      <div class="flex-item discussion-avatar">
+        <img src="{{discussion_message.sender.picture_url}}&width=60&height=60" class="img-circle"/>
+      </div>
+      <div class="flex-item discussion-content">
+        <p class="content">
+          {{discussion_message.content}}
+        </p>
+        <p class="date">
+          Le {{discussion_message.created| date: 'dd/MM/yyyy à H:mm'}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="discussion_message_form" (ngSubmit)="submit()">
+    <ion-row class="message-form">
+      <ion-col col-10 col-sm-11 align-self-center>
+        <ion-item>
+          <ion-input placeholder="Tapez votre message"
+                     [class.invalid]="!discussion_message_form.controls.content.valid && (discussion_message_form.controls.content.dirty || submitAttempt)"
+                     type="textarea" formControlName="content" required></ion-input>
+        </ion-item>
+        <p class="form-error" *ngIf="discussion_message_form.controls.content.errors">
+          {{discussion_message_form.controls.content.errors.error}}
+        </p>
+      </ion-col>
+      <ion-col col-2 col-sm-1 align-self-center text-center>
+        <button ion-button icon-only clear [disabled]="!discussion_message_form.valid">
+          <ion-icon ios="ios-send" md="ios-send" color="primary"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>
