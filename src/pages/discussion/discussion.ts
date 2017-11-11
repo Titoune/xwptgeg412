@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Auth} from "../../app/auth";
 
 /**
  * Generated class for the DiscussionsPage page.
@@ -9,17 +10,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  */
 
 @Component({
-  selector: 'page-discussions',
-  templateUrl: 'discussions.html',
+  selector: 'page-discussion',
+  templateUrl: 'discussion.html',
 })
-export class DiscussionsPage {
+export class DiscussionPage {
   private isLoading: boolean = true;
   private isLoadingError: boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private auth: Auth) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DiscussionsPage');
+  ionViewCanEnter() {
+    return this.auth.isAuthorized();
   }
 
 }

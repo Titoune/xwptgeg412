@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
   and Angular DI.
 */
 @Injectable()
-export class PollsProvider {
+export class PollsProvider  extends InitProvider{
 
 
 

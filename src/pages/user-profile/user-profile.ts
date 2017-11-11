@@ -17,7 +17,7 @@ import {Auth} from "../../app/auth";
 export class UserProfilePage {
   private isLoading: boolean = true;
   private isLoadingError: boolean = false;
-  public user: object = {};
+  public user: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth: Auth, private usersProvider: UsersProvider) {
     this.getUser(navParams.get('id'));

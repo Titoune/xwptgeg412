@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {UsersProvider} from "../../providers/users";
+import {Auth} from "../../app/auth";
 
 /**
  * Generated class for the LoginPage page.
@@ -23,7 +24,8 @@ export class LoginPage {
               public navParams: NavParams,
               private formBuilder: FormBuilder,
               private loadingCtrl: LoadingController,
-              private usersProvider: UsersProvider) {
+              private usersProvider: UsersProvider,
+              private auth: Auth) {
     this.loginForm = this.formBuilder.group({
       cellphone_code: ['+33', Validators.required],
       cellphone: ['', Validators.required],

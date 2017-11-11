@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
   and Angular DI.
 */
 @Injectable()
-export class EventParticipationsProvider {
+export class EventParticipationsProvider   extends InitProvider{
 
 
 }

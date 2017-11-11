@@ -36,6 +36,18 @@ export class UsersProvider extends InitProvider {
       });
   }
 
+  getUsersByFullname(value){
+    return this.http.get(GLOBAL.apiUrl + `users/get-users-by-fullname/`+value, this.buildRequestOptions())
+      .map(res => {
+        return this.handleResponse(res);
+      })
+      .retryWhen((errors) => {
+        return errors.mergeMap((error) => (error.status != 0) ? Observable.throw(error) : Observable.of(error)).delay(1000).take(15);
+      }).catch((err: Response) => {
+        return this.handleError(err);
+      });
+  }
+
   getUser(id) {
     return this.http.get(GLOBAL.apiUrl + `users/get-user/` + id, this.buildRequestOptions())
       .map(res => {

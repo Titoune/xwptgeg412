@@ -10,7 +10,7 @@ import {Observable} from "rxjs/Observable";
   and Angular DI.
 */
 @Injectable()
-export class DiscussionMessagesProvider {
+export class DiscussionMessagesProvider  extends InitProvider {
 
 
 }

@@ -8,7 +8,9 @@ import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
 import {UserListPage} from "../pages/user-list/user-list";
 import {ChatPage} from '../pages/chat/chat';
-import {DiscussionsPage} from '../pages/discussions/discussions';
+import {DiscussionPage} from '../pages/discussion/discussion';
+import {DiscussionListPage} from '../pages/discussion-list/discussion-list';
+import {DiscussionCreatePage} from '../pages/discussion-create/discussion-create';
 import {EventsPage} from '../pages/events/events';
 import {PollsPage} from '../pages/polls/polls';
 import {ProfilePage} from "../pages/profile/profile";
@@ -39,11 +41,13 @@ import { Camera } from '@ionic-native/camera'
     TabsPage,
     UserListPage,
     ChatPage,
-    DiscussionsPage,
+    DiscussionPage,
+    DiscussionListPage,
     EventsPage,
     PollsPage,
     ProfilePage,
-    UserProfilePage
+    UserProfilePage,
+    DiscussionCreatePage
   ],
   imports: [
     BrowserModule,
@@ -58,11 +62,13 @@ import { Camera } from '@ionic-native/camera'
     TabsPage,
     UserListPage,
     ChatPage,
-    DiscussionsPage,
+    DiscussionPage,
+    DiscussionListPage,
     EventsPage,
     PollsPage,
     ProfilePage,
-    UserProfilePage
+    UserProfilePage,
+    DiscussionCreatePage
   ],
   providers: [
     StatusBar,

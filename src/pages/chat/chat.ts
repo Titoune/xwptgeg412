@@ -17,13 +17,17 @@ export class ChatPage {
               public navParams: NavParams,
               private formBuilder: FormBuilder,
               public loadingCtrl: LoadingController,
-              public auth:Auth,
+              private auth:Auth,
               public chatMessagesProvider: ChatMessagesProvider) {
     this.getChatMessages();
 
     this.chat_message_form = formBuilder.group({
       content: ['', Validators.compose([Validators.required])]
     });
+  }
+
+  ionViewCanEnter() {
+    return this.auth.isAuthorized();
   }
 
   getChatMessages() {

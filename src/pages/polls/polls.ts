@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Auth} from "../../app/auth";
 
 /**
  * Generated class for the PollsPage page.
@@ -15,11 +16,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class PollsPage {
   private isLoading: boolean = true;
   private isLoadingError: boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private auth: Auth) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PollsPage');
+  ionViewCanEnter() {
+    return this.auth.isAuthorized();
   }
 
 }

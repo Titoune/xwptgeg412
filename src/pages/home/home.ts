@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {Auth} from "../../app/auth";
 
 @Component({
   selector: 'page-home',
@@ -8,7 +9,7 @@ import { NavController } from 'ionic-angular';
 export class HomePage {
   private isLoading: boolean = true;
   private isLoadingError: boolean = false;
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private auth: Auth) {
 
   }
 
