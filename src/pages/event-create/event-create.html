@@ -1,0 +1,120 @@
+<!--
+  Generated template for the EventCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Créer un évènement</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <p *ngIf="isLoading == true">
+    <ion-spinner></ion-spinner>
+    Chargement en cours...
+  </p>
+  <p *ngIf="isLoadingError == true">
+    Erreur de chargement.
+  </p>
+
+  <form *ngIf="isLoading == false && isLoadingError == false" [formGroup]="event_form" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Nom de l'évènement</ion-label>
+        <ion-input
+          [class.invalid]="!event_form.controls.name.valid && (event_form.controls.name.dirty || submitAttempt)"
+          type="text" formControlName="name" [ngModel]="event.name"></ion-input>
+      </ion-item>
+      <p class="form-error" *ngIf="event_form.controls.name.errors">
+        {{event_form.controls.name.errors.error}}
+      </p>
+
+      <ion-item>
+        <ion-label stacked>Début</ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY HH:mm"
+                      [class.invalid]="!event_form.controls.start.valid && (event_form.controls.start.dirty || submitAttempt)"
+                      type="text" formControlName="start" [ngModel]="event.start"></ion-datetime>
+      </ion-item>
+      <p class="form-error" *ngIf="event_form.controls.start.errors">
+        {{event_form.controls.start.errors.error}}
+      </p>
+
+      <ion-item>
+        <ion-label stacked>Fin</ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY HH:mm"
+                      [class.invalid]="!event_form.controls.end.valid && (event_form.controls.end.dirty || submitAttempt)"
+                      type="text" formControlName="end" [ngModel]="event.end"></ion-datetime>
+      </ion-item>
+      <p class="form-error" *ngIf="event_form.controls.end.errors">
+        {{event_form.controls.end.errors.error}}
+      </p>
+
+      <ion-item>
+        <ion-label stacked>Tarif</ion-label>
+        <ion-input
+          [class.invalid]="!event_form.controls.price.valid && (event_form.controls.price.dirty || submitAttempt)"
+          type="text" formControlName="price" [ngModel]="event.price"></ion-input>
+      </ion-item>
+      <p class="form-error" *ngIf="event_form.controls.price.errors">
+        {{event_form.controls.price.errors.error}}
+      </p>
+
+      <ion-item>
+        <ion-label stacked>Téléphone</ion-label>
+        <ion-input
+          [class.invalid]="!event_form.controls.phone.valid && (event_form.controls.phone.dirty || submitAttempt)"
+          type="text" formControlName="phone" [ngModel]="event.phone"></ion-input>
+      </ion-item>
+      <p class="form-error" *ngIf="event_form.controls.phone.errors">
+        {{event_form.controls.phone.errors.error}}
+      </p>
+
+      <ion-item>
+        <ion-label stacked>Numéro</ion-label>
+        <ion-input
+          [class.invalid]="!event_form.controls.street_number.valid && (event_form.controls.street_number.dirty || submitAttempt)"
+          type="text" formControlName="street_number" [ngModel]="event.street_number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Rue</ion-label>
+        <ion-input
+          [class.invalid]="!event_form.controls.route.valid && (event_form.controls.route.dirty || submitAttempt)"
+          type="text" formControlName="route" [ngModel]="event.route"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Code postal</ion-label>
+        <ion-input
+          [class.invalid]="!event_form.controls.postal_code.valid && (event_form.controls.postal_code.dirty || submitAttempt)"
+          type="text" formControlName="postal_code" [ngModel]="event.postal_code"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Ville</ion-label>
+        <ion-input
+          [class.invalid]="!event_form.controls.locality.valid && (event_form.controls.locality.dirty || submitAttempt)"
+          type="text" formControlName="locality" [ngModel]="event.locality"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Pays</ion-label>
+        <ion-input
+          [class.invalid]="!event_form.controls.country.valid && (event_form.controls.country.dirty || submitAttempt)"
+          type="text" formControlName="country" [ngModel]="event.country"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Présentation</ion-label>
+        <ion-textarea
+          [class.invalid]="!event_form.controls.content.valid && (event_form.controls.content.dirty || submitAttempt)"
+          formControlName="content" [ngModel]="event.content"></ion-textarea>
+      </ion-item>
+      <p class="form-error" *ngIf="event_form.controls.content.errors">
+        {{event_form.controls.content.errors.error}}
+      </p>
+    </ion-list>
+    <button padding ion-button color="primary" [disabled]="!event_form.valid" block>Enregistrer</button>
+  </form>
+</ion-content>

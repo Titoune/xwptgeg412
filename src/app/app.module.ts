@@ -11,10 +11,12 @@ import {ChatPage} from '../pages/chat/chat';
 import {DiscussionPage} from '../pages/discussion/discussion';
 import {DiscussionListPage} from '../pages/discussion-list/discussion-list';
 import {DiscussionCreatePage} from '../pages/discussion-create/discussion-create';
-import {EventsPage} from '../pages/events/events';
-import {PollsPage} from '../pages/polls/polls';
+import {EventListPage} from '../pages/event-list/event-list';
+import {PollListPage} from '../pages/poll-list/poll-list';
 import {ProfilePage} from "../pages/profile/profile";
 import {UserProfilePage} from "../pages/user-profile/user-profile";
+import {EventCreatePage} from '../pages/event-create/event-create';
+import {PollCreatePage} from '../pages/poll-create/poll-create';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -43,11 +45,13 @@ import { Camera } from '@ionic-native/camera'
     ChatPage,
     DiscussionPage,
     DiscussionListPage,
-    EventsPage,
-    PollsPage,
+    EventListPage,
+    PollListPage,
     ProfilePage,
     UserProfilePage,
-    DiscussionCreatePage
+    DiscussionCreatePage,
+    EventCreatePage,
+    PollCreatePage
   ],
   imports: [
     BrowserModule,
@@ -64,11 +68,13 @@ import { Camera } from '@ionic-native/camera'
     ChatPage,
     DiscussionPage,
     DiscussionListPage,
-    EventsPage,
-    PollsPage,
+    EventListPage,
+    PollListPage,
     ProfilePage,
     UserProfilePage,
-    DiscussionCreatePage
+    DiscussionCreatePage,
+    EventCreatePage,
+    PollCreatePage
   ],
   providers: [
     StatusBar,

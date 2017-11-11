@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>events</ion-title>
+    <ion-title>Evènements</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,4 +21,8 @@
   <p *ngIf="isLoadingError == true">
     Erreur de chargement.
   </p>
+
+  <ion-fab right bottom>
+    <button (click)="goToEventCreatePage()" ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>
