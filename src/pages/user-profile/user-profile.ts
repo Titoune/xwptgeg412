@@ -15,9 +15,9 @@ import {Auth} from "../../app/auth";
   templateUrl: 'user-profile.html',
 })
 export class UserProfilePage {
-
+  private isLoading: boolean = true;
+  private isLoadingError: boolean = false;
   public user: object = {};
-  private isLoaded: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private auth: Auth, private usersProvider: UsersProvider) {
     this.getUser(navParams.get('id'));
@@ -30,10 +30,13 @@ export class UserProfilePage {
 
   getUser(id) {
     this.usersProvider.getUser(id).subscribe(data => {
+      this.isLoading = false;
         this.user = data.user;
-        this.isLoaded = true;
       },
       error => {
+        this.isLoading = false;
+        this.isLoadingError = true;
+
       });
   }
 

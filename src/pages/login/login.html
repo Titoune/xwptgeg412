@@ -8,6 +8,14 @@
 
 
 <ion-content padding>
+  <p *ngIf="isLoading == true">
+    <ion-spinner></ion-spinner>
+    Chargement en cours...
+  </p>
+  <p *ngIf="isLoadingError == true">
+    Erreur de chargement.
+  </p>
+
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-item>
       <ion-label>Indicatif</ion-label>

@@ -1,3 +1,33 @@
 page-chat {
+  margin-top: 5px;
+  .discussion-message{
+    margin-bottom: 25px;
+    &.right .flex {
+      flex-direction: row-reverse;
+    }
+    .flex{
+      display: flex;
+      width: 100%;
 
+      .discussion-avatar{
+        text-align: center;
+        min-width: 80px;
+      }
+      .discussion-content{
+        background: #fff;
+        padding:15px;
+        max-width: 90%;
+        p{
+          margin: 0;
+          text-align: justify;
+
+        }
+        p.date{
+          margin-top: 15px;
+          font-size: 1.2rem;
+          color:lighten($text-color,15%)
+        }
+      }
+    }
+  }
 }

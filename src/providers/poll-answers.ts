@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import {Injectable} from '@angular/core';
+import {InitProvider} from "./init";
+import {GLOBAL} from '../app/global'
+import {Observable} from "rxjs/Observable";
 
 /*
   Generated class for the PollAnswersProvider provider.
@@ -11,8 +12,6 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PollAnswersProvider {
 
-  constructor(public http: Http) {
-    console.log('Hello PollAnswersProvider Provider');
-  }
+
 
 }

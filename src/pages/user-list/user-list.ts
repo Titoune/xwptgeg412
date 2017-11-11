@@ -16,6 +16,8 @@ import {UserProfilePage} from "../user-profile/user-profile";
   templateUrl: 'user-list.html',
 })
 export class UserListPage {
+  private isLoading: boolean = true;
+  private isLoadingError: boolean = false;
   public items: any = [];
   public users: any = [];
   public isLoaded: boolean = false;

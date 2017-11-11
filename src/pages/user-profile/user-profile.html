@@ -14,6 +14,15 @@
 
 
 <ion-content padding>
+  <p *ngIf="isLoading == true">
+    <ion-spinner></ion-spinner>
+    Chargement en cours...
+  </p>
+  <p *ngIf="isLoadingError == true">
+     Erreur de chargement.
+  </p>
+
+
   <img src="{{user.picture_url}}&width=50&height=50" class="img-circle"/>
   {{user.firstname}}
   {{user.lastname}}
@@ -28,6 +37,7 @@
   {{user.lng}}
   {{user.cellphone_code}}
   {{user.cellphone}}
+  {{user.phone_code}}
   {{user.phone}}
   {{user.birth}}
   {{user.death}}

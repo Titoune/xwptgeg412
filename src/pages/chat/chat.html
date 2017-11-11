@@ -14,5 +14,49 @@
 
 
 <ion-content padding>
+  <p *ngIf="isLoading == true">
+    <ion-spinner></ion-spinner>
+    Chargement en cours...
+  </p>
+  <p *ngIf="isLoadingError == true">
+    Erreur de chargement.
+  </p>
+
+
+  <div *ngFor="let chat_message of chat_messages" [class.right]="chat_message.user_id == this.auth.getAuthUser().id" class="discussion-message">
+    <p>{{chat_message.user.fullname}}</p>
+    <div class="flex">
+      <div class="flex-item discussion-avatar">
+        <img src="{{chat_message.user.picture_url}}&width=60&height=60" class="img-circle" />
+      </div>
+      <div class="flex-item discussion-content">
+        <p class="content">
+          {{chat_message.content}}
+        </p>
+        <p class="date">
+          Le {{chat_message.created| date: 'dd/MM/yyyy à H:mm'}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="chat_message_form" (ngSubmit)="submit()">
+    <ion-row class="message-form">
+      <ion-col col-10 col-sm-11 align-self-center>
+        <ion-item>
+          <ion-input placeholder="Tapez votre message" [class.invalid]="!chat_message_form.controls.content.valid && (chat_message_form.controls.content.dirty || submitAttempt)" type="textarea" formControlName="content" required></ion-input>
+        </ion-item>
+        <p class="form-error" *ngIf="chat_message_form.controls.content.errors">
+          {{chat_message_form.controls.content.errors.error}}
+        </p>
+      </ion-col>
+      <ion-col col-2 col-sm-1 align-self-center text-center>
+        <button ion-button icon-only clear [disabled]="!chat_message_form.valid">
+          <ion-icon  ios="ios-send" md="ios-send" color="primary" ></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
+
 
 </ion-content>

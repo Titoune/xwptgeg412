@@ -14,6 +14,14 @@
 
 
 <ion-content padding>
+  <p *ngIf="isLoading == true">
+    <ion-spinner></ion-spinner>
+    Chargement en cours...
+  </p>
+  <p *ngIf="isLoadingError == true">
+    Erreur de chargement.
+  </p>
+
   <ion-searchbar placeholder="Recherche" (ionInput)="search($event)"></ion-searchbar>
 
   <ion-list>

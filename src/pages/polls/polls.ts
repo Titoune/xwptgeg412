@@ -13,7 +13,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'polls.html',
 })
 export class PollsPage {
-
+  private isLoading: boolean = true;
+  private isLoadingError: boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

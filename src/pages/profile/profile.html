@@ -14,165 +14,208 @@
 
 
 <ion-content padding>
-   <form [formGroup]="profileForm" (ngSubmit)="submit()">
-      <div class="picture">
-        <img *ngIf="!picture" (click)="takePhoto()" src="{{user.picture_url}}&width=150&height=150" width="150"
-             height="150" class="img-circle"/>
-        <img *ngIf="picture" (click)="takePhoto()" src="{{picture}}" width="150" height="150" class="img-circle"/>
-        <p class="name">{{user.firstname}} {{user.lastname}}</p>
-      </div>
-      <ion-list>
-        <ion-item>
-          <ion-label stacked>Sexe</ion-label>
-          <ion-select
-            [class.invalid]="!profileForm.controls.sex.valid && (profileForm.controls.sex.dirty || submitAttempt)"
-            formControlName="sex">
-            <ion-option value="m">Homme</ion-option>
-            <ion-option value="f">Femme</ion-option>
-          </ion-select>
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.sex.errors">
-          {{profileForm.controls.sex.errors.error}}
-        </p>
-        <ion-item>
-          <ion-label stacked>Prenom</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.firstname.valid && (profileForm.controls.firstname.dirty || submitAttempt)"
-            type="text" formControlName="firstname"></ion-input>
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.firstname.errors">
-          {{profileForm.controls.firstname.errors.error}}
-        </p>
-        <ion-item>
-          <ion-label stacked>Nom</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.lastname.valid && (profileForm.controls.lastname.dirty || submitAttempt)"
-            type="text" formControlName="lastname"></ion-input>
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.lastname.errors">
-          {{profileForm.controls.lastname.errors.error}}
-        </p>
-        <ion-item>
-          <ion-label stacked>Date de naissance</ion-label>
-          <ion-datetime displayFormat="DD-MM-YYYY"
-                        [class.invalid]="!profileForm.controls.birth.valid && (profileForm.controls.birth.dirty || submitAttempt)"
-                        type="text" formControlName="birth"></ion-datetime>
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.birth.errors">
-          {{profileForm.controls.birth.errors.error}}
-        </p>
-        <ion-item>
-          <ion-label stacked>Téléphone mobile</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.cellphone.valid && (profileForm.controls.cellphone.dirty || submitAttempt)"
-            type="text" formControlName="cellphone"></ion-input>
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.cellphone.errors">
-          {{profileForm.controls.cellphone.errors.error}}
-        </p>
-        <ion-item>
-          <ion-label stacked>Email</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.email.valid && (profileForm.controls.email.dirty || submitAttempt)"
-            type="email" formControlName="email"></ion-input>
+  <p *ngIf="isLoading == true">
+    <ion-spinner></ion-spinner>
+    Chargement en cours...
+  </p>
+  <p *ngIf="isLoadingError == true">
+    Erreur de chargement.
+  </p>
 
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.email.errors">
-          {{profileForm.controls.email.errors.error}}
-        </p>
-        <ion-item>
-          <ion-label stacked>Presentation</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.presentation.valid && (profileForm.controls.presentation.dirty || submitAttempt)"
-            type="text" formControlName="presentation"></ion-input>
+  <form *ngIf="isLoading == false && isLoadingError == false" [formGroup]="profileForm" (ngSubmit)="submit()">
+    <div class="picture">
+      <img *ngIf="!picture" (click)="takePhoto()" src="{{user.picture_url}}&width=150&height=150" width="150"
+           height="150" class="img-circle"/>
+      <img *ngIf="picture" (click)="takePhoto()" src="{{picture}}" width="150" height="150" class="img-circle"/>
+      <p class="name">{{user.firstname}} {{user.lastname}}</p>
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Sexe</ion-label>
+        <ion-select
+          [class.invalid]="!profileForm.controls.sex.valid && (profileForm.controls.sex.dirty || submitAttempt)"
+          formControlName="sex" [ngModel]="user.sex">
+          <ion-option value="m">Homme</ion-option>
+          <ion-option value="f">Femme</ion-option>
+        </ion-select>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.sex.errors">
+        {{profileForm.controls.sex.errors.error}}
+      </p>
+      <ion-item>
+        <ion-label stacked>Prenom</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.firstname.valid && (profileForm.controls.firstname.dirty || submitAttempt)"
+          type="text" formControlName="firstname" [ngModel]="user.firstname"></ion-input>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.firstname.errors">
+        {{profileForm.controls.firstname.errors.error}}
+      </p>
+      <ion-item>
+        <ion-label stacked>Nom</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.lastname.valid && (profileForm.controls.lastname.dirty || submitAttempt)"
+          type="text" formControlName="lastname" [ngModel]="user.lastname"></ion-input>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.lastname.errors">
+        {{profileForm.controls.lastname.errors.error}}
+      </p>
+      <ion-item>
+        <ion-label stacked>Date de naissance</ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY"
+                      [class.invalid]="!profileForm.controls.birth.valid && (profileForm.controls.birth.dirty || submitAttempt)"
+                      type="text" formControlName="birth" [ngModel]="user.birth"></ion-datetime>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.birth.errors">
+        {{profileForm.controls.birth.errors.error}}
+      </p>
+      <ion-item>
+        <ion-label stacked>Indicatif mobile</ion-label>
+        <ion-select
+          [class.invalid]="!profileForm.controls.cellphone_code.valid && (profileForm.controls.cellphone_code.dirty || submitAttempt)"
+          formControlName="cellphone_code" [ngModel]="user.cellphone_code">
+          <ion-option value="+33">+33</ion-option>
+          <ion-option value="+49">+49</ion-option>
+        </ion-select>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.cellphone_code.errors">
+        {{profileForm.controls.cellphone_code.errors.error}}
+      </p>
+      <ion-item>
+        <ion-label stacked>Téléphone mobile</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.cellphone.valid && (profileForm.controls.cellphone.dirty || submitAttempt)"
+          type="text" formControlName="cellphone" [ngModel]="user.cellphone"></ion-input>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.cellphone.errors">
+        {{profileForm.controls.cellphone.errors.error}}
+      </p>
 
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.presentation.errors">
-          {{profileForm.controls.presentation.errors.error}}
-        </p>
-        <ion-item>
-          <ion-label stacked>Branche</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.branch.valid && (profileForm.controls.branch.dirty || submitAttempt)"
-            type="text" formControlName="branch"></ion-input>
+      <ion-item>
+        <ion-label stacked>Indicatif fixe</ion-label>
+        <ion-select
+          [class.invalid]="!profileForm.controls.phone_code.valid && (profileForm.controls.phone_code.dirty || submitAttempt)"
+          formControlName="phone_code" [ngModel]="user.phone_code">
+          <ion-option value="+33">+33</ion-option>
+          <ion-option value="+49">+49</ion-option>
+        </ion-select>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.phone_code.errors">
+        {{profileForm.controls.phone_code.errors.error}}
+      </p>
+      <ion-item>
+        <ion-label stacked>Téléphone fixe</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.phone.valid && (profileForm.controls.phone.dirty || submitAttempt)"
+          type="text" formControlName="phone" [ngModel]="user.phone"></ion-input>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.phone.errors">
+        {{profileForm.controls.phone.errors.error}}
+      </p>
 
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.branch.errors">
-          {{profileForm.controls.branch.errors.error}}
-        </p>
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.email.valid && (profileForm.controls.email.dirty || submitAttempt)"
+          type="email" formControlName="email" [ngModel]="user.email"></ion-input>
 
-        <ion-item>
-          <ion-label stacked>Numéro</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.street_number.valid && (profileForm.controls.street_number.dirty || submitAttempt)"
-            type="text" formControlName="street_number"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>Rue</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.route.valid && (profileForm.controls.route.dirty || submitAttempt)"
-            type="text" formControlName="route"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>Code postal</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.postal_code.valid && (profileForm.controls.postal_code.dirty || submitAttempt)"
-            type="text" formControlName="postal_code"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>Ville</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.locality.valid && (profileForm.controls.locality.dirty || submitAttempt)"
-            type="text" formControlName="locality"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>Pays</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.country.valid && (profileForm.controls.country.dirty || submitAttempt)"
-            type="text" formControlName="country"></ion-input>
-        </ion-item>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.email.errors">
+        {{profileForm.controls.email.errors.error}}
+      </p>
+      <ion-item>
+        <ion-label stacked>Presentation</ion-label>
+        <ion-textarea
+          [class.invalid]="!profileForm.controls.presentation.valid && (profileForm.controls.presentation.dirty || submitAttempt)"
+           formControlName="presentation" [ngModel]="user.presentation"></ion-textarea>
 
-        <ion-item>
-          <ion-label stacked>profession</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.profession.valid && (profileForm.controls.profession.dirty || submitAttempt)"
-            type="text" formControlName="profession"></ion-input>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.presentation.errors">
+        {{profileForm.controls.presentation.errors.error}}
+      </p>
+      <ion-item>
+        <ion-label stacked>Branche</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.branch.valid && (profileForm.controls.branch.dirty || submitAttempt)"
+          type="text" formControlName="branch" [ngModel]="user.branch"></ion-input>
 
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.profession.errors">
-          {{profileForm.controls.profession.errors.error}}
-        </p>
-        <ion-item>
-          <ion-label>Notification email anniversaires</ion-label>
-          <ion-toggle formControlName="notification_anniversary"></ion-toggle>
-        </ion-item>
-        <ion-item>
-          <ion-label>Notification email evènements</ion-label>
-          <ion-toggle formControlName="notification_event"></ion-toggle>
-        </ion-item>
-        <ion-item>
-          <ion-label>Notification email sondages</ion-label>
-          <ion-toggle formControlName="notification_poll"></ion-toggle>
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>Nouveau mot de passe</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.password1.valid && (profileForm.controls.password1.dirty || submitAttempt)"
-            type="password" formControlName="password1"></ion-input>
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.password1.errors">
-          {{profileForm.controls.password1.errors.error}}
-        </p>
-        <ion-item>
-          <ion-label stacked>Confirmation du nouveau mot de passe</ion-label>
-          <ion-input
-            [class.invalid]="!profileForm.controls.password2.valid && (profileForm.controls.password2.dirty || submitAttempt)"
-            type="password" formControlName="password2"></ion-input>
-        </ion-item>
-        <p class="form-error" *ngIf="profileForm.controls.password2.errors">
-          {{profileForm.controls.password2.errors.error}}
-        </p>
-      </ion-list>
-      <button padding ion-button color="primary" [disabled]="!profileForm.valid" block>Enregistrer</button>
-    </form>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.branch.errors">
+        {{profileForm.controls.branch.errors.error}}
+      </p>
+
+      <ion-item>
+        <ion-label stacked>Numéro</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.street_number.valid && (profileForm.controls.street_number.dirty || submitAttempt)"
+          type="text" formControlName="street_number" [ngModel]="user.street_number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Rue</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.route.valid && (profileForm.controls.route.dirty || submitAttempt)"
+          type="text" formControlName="route" [ngModel]="user.route"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Code postal</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.postal_code.valid && (profileForm.controls.postal_code.dirty || submitAttempt)"
+          type="text" formControlName="postal_code" [ngModel]="user.postal_code"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Ville</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.locality.valid && (profileForm.controls.locality.dirty || submitAttempt)"
+          type="text" formControlName="locality" [ngModel]="user.locality"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Pays</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.country.valid && (profileForm.controls.country.dirty || submitAttempt)"
+          type="text" formControlName="country" [ngModel]="user.country" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>profession</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.profession.valid && (profileForm.controls.profession.dirty || submitAttempt)"
+          type="text" formControlName="profession" [ngModel]="user.profession"></ion-input>
+
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.profession.errors">
+        {{profileForm.controls.profession.errors.error}}
+      </p>
+      <ion-item>
+        <ion-label>Notification email anniversaires</ion-label>
+        <ion-toggle formControlName="notification_anniversary" [ngModel]="user.notification_anniversary"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Notification email evènements</ion-label>
+        <ion-toggle formControlName="notification_event" [ngModel]="user.notification_event"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Notification email sondages</ion-label>
+        <ion-toggle formControlName="notification_poll" [ngModel]="user.notification_poll"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Nouveau mot de passe</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.password1.valid && (profileForm.controls.password1.dirty || submitAttempt)"
+          type="password" formControlName="password1" [ngModel]="user.password1"></ion-input>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.password1.errors">
+        {{profileForm.controls.password1.errors.error}}
+      </p>
+      <ion-item>
+        <ion-label stacked>Confirmation du nouveau mot de passe</ion-label>
+        <ion-input
+          [class.invalid]="!profileForm.controls.password2.valid && (profileForm.controls.password2.dirty || submitAttempt)"
+          type="password" formControlName="password2" [ngModel]="user.password2"></ion-input>
+      </ion-item>
+      <p class="form-error" *ngIf="profileForm.controls.password2.errors">
+        {{profileForm.controls.password2.errors.error}}
+      </p>
+    </ion-list>
+    <button padding ion-button color="primary" [disabled]="!profileForm.valid" block>Enregistrer</button>
+  </form>
 </ion-content>

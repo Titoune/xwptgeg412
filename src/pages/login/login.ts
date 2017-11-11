@@ -15,7 +15,8 @@ import {UsersProvider} from "../../providers/users";
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  private isLoading: boolean = true;
+  private isLoadingError: boolean = false;
   private loginForm: FormGroup;
 
   constructor(public navCtrl: NavController,

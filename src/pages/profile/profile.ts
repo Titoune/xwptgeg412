@@ -17,11 +17,12 @@ import {Validators, FormBuilder} from "@angular/forms";
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-
-  public user: object = {};
+  private isLoading: boolean = true;
+  private isLoadingError: boolean = false;
+  public user: any = {};
   public picture: any;
   public profileForm;
-  private isLoaded: boolean = false;
+
 
   public options: CameraOptions = {
     quality: 90,
@@ -36,33 +37,34 @@ export class ProfilePage {
               private usersProvider: UsersProvider,
               public loadingCtrl: LoadingController,
               private camera: Camera,
-              private formBuilder:FormBuilder) {
+              private formBuilder: FormBuilder) {
     this.getMe();
     this.profileForm = formBuilder.group({
       firstname: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       lastname: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      email:['', Validators.compose([Validators.required])],
-      sex:['', Validators.compose([Validators.required])],
-      street_number:['', Validators.compose([Validators.required])],
-      route:['', Validators.compose([Validators.required])],
-      postal_code:['', Validators.compose([Validators.required])],
-      locality:['', Validators.compose([Validators.required])],
-      country:['', Validators.compose([Validators.required])],
-      country_short:['', Validators.compose([Validators.required])],
-      lat:['', Validators.compose([Validators.required])],
-      lng:['', Validators.compose([Validators.required])],
-      cellphone_code:['', Validators.compose([Validators.required])],
-      cellphone:['', Validators.compose([Validators.required])],
-      phone:['', Validators.compose([Validators.required])],
-      birth:['', Validators.compose([Validators.required])],
-      presentation:['', Validators.compose([Validators.required])],
-      profession:['', Validators.compose([Validators.required])],
-      notification_anniversary:['', Validators.compose([Validators.required])],
-      notification_event:['', Validators.compose([Validators.required])],
-      notification_poll:['', Validators.compose([Validators.required])],
-      branch:['', Validators.compose([Validators.required])],
-      password1:['', Validators.compose([Validators.required])],
-      password2:['', Validators.compose([Validators.required])]
+      email: ['', Validators.compose([Validators.required])],
+      sex: ['', Validators.compose([Validators.required])],
+      street_number: ['', Validators.compose([Validators.required])],
+      route: ['', Validators.compose([Validators.required])],
+      postal_code: ['', Validators.compose([Validators.required])],
+      locality: ['', Validators.compose([Validators.required])],
+      country: ['', Validators.compose([Validators.required])],
+      country_short: [''],
+      lat: [''],
+      lng: [''],
+      cellphone_code: ['', Validators.compose([Validators.required])],
+      cellphone: ['', Validators.compose([Validators.required])],
+      phone_code: ['', Validators.compose([Validators.required])],
+      phone: ['', Validators.compose([Validators.required])],
+      birth: ['', Validators.compose([Validators.required])],
+      presentation: ['', Validators.compose([Validators.required])],
+      profession: ['', Validators.compose([Validators.required])],
+      notification_anniversary: [''],
+      notification_event: [''],
+      notification_poll: [''],
+      branch: ['', Validators.compose([Validators.required])],
+      password1: ['', Validators.compose([Validators.minLength(4)])],
+      password2: ['', Validators.compose([Validators.minLength(4)])]
 
     });
   }
@@ -74,9 +76,17 @@ export class ProfilePage {
   getMe() {
     this.usersProvider.getMe().subscribe(data => {
         this.user = data.user;
-        this.isLoaded = true;
+        console.log(this.user);
+        this.isLoadingError = false;
+        this.isLoading = false;
+
       },
       error => {
+        this.isLoadingError = true;
+        this.isLoading = false;
+
+      }, () => {
+
       });
   }
 
