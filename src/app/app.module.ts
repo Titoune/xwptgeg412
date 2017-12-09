@@ -33,7 +33,6 @@ import {DiscussionMessagesProvider} from '../providers/discussion-messages';
 import {InitProvider} from '../providers/init';
 import {HttpModule} from '@angular/http';
 import {Auth} from "./auth";
-import { Camera } from '@ionic-native/camera'
 
 @NgModule({
   declarations: [
@@ -91,9 +90,7 @@ import { Camera } from '@ionic-native/camera'
     DiscussionsProvider,
     DiscussionMessagesProvider,
     InitProvider,
-    Auth,
-    Camera
-
+    Auth
   ]
 })
 export class AppModule {
